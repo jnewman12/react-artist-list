@@ -15,13 +15,14 @@ export function getArtist(id) {
 }
 
 // create
-export function createArtist() {
+export function createArtist(artist) {
   fetch(`${URL}/artists`, {
     method: 'POST',
     body: JSON.stringify({
-      title: this.state.postTitle,
-      body: this.state.postBody,
-      link: this.state.postLink
+      name: artist.name,
+      description: artist.description,
+      top_track: artist.topTrack,
+      image_url: artist.imageUrl
     }),
     headers: {
       'content-type': 'application/json'
@@ -30,13 +31,14 @@ export function createArtist() {
 }
 
 // edit
-export function editArtist(id) {
-  fetch(`${URL}/artists/${id}`, {
+export function editArtist(artist) {
+  fetch(`${URL}/artists/${artist.id}`, {
     method: 'PUT',
     body: JSON.stringify({
-      title: this.state.postTitle,
-      body: this.state.postBody,
-      link: this.state.postLink
+      name: artist.name,
+      description: artist.description,
+      top_track: artist.topTrack,
+      image_url: artist.imageUrl
     }),
     headers: {
       'content-type': 'application/json'

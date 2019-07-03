@@ -29,13 +29,14 @@ class App extends Component {
           </div>
         </nav>
         <Switch>
-          <Route exact path='/' render={ () =>
-              <Index />
-            } 
-          />
+          <Route exact path='/' component={ Index } />
           <Route exact path='/create' component={ Create } />
-          <Route exact path='/artist/:id' component={ Show } />
-          <Route exact path='/artist/:id/edit' component={ Edit } />
+          <Route exact path='/artists/:id' render={ (props) =>
+            <Show {...props} />
+           } />
+          <Route exact path='/artists/:id/edit' render={ (props) => 
+            <Edit {...props} />
+           } />
         </Switch>
       </div>
     )

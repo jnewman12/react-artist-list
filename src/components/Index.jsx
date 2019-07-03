@@ -27,12 +27,12 @@ class Index extends Component {
   render() {
     var artists = this.state.artists.map((artist) => {
       return(
-        <li key={artist.id}>
+        <li key={artist.id} style={{paddingBottom:'50px'}}>
           <img src={artist.image_url} alt=""/>
           <br/>
-          <Link to={`artist/${artist.id}/edit`}>Edit {artist.name}</Link>
+          <Link to={`artists/${artist.id}/edit`}>Edit {artist.name}</Link>
           <br/>
-          <Link to={`artist/${artist.id}`}>View {artist.name}</Link>
+          <Link to={`artists/${artist.id}`}>View {artist.name}</Link>
           <br/>
           <a className='btn btn-danger' onClick={() => this.handleDelete(artist.id)}>delete {artist.name}</a>
           <br/>
