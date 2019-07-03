@@ -30,7 +30,7 @@ class App extends Component {
         </nav>
         <Switch>
           <Route exact path='/' render={ () =>
-              <Index {...props} />
+              <Index />
             } 
           />
           <Route exact path='/create' component={ Create } />

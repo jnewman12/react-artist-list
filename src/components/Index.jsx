@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import { getAll, deleteArtist } from '../services/api';
+import { getArtists, deleteArtist } from '../services/api';
 
-import { Link, History } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class Index extends Component {
   constructor() {
     super()
     this.state = {
-      artists: []
+      artists: [],
+      redirect: false
     }
-    // this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
-    getAll().then((json) => {
+    getArtists().then((json) => {
       this.setState({artists: json});
     })
   }
 
   handleDelete = (id) => {
-    deleteArtist(id).then(json => {
-      this.props.history.push('/');
+    deleteArtist(id).then((json) => {
+      window.location = '/'
     })
   }
 
@@ -35,6 +35,7 @@ class Index extends Component {
           <Link to={`artist/${artist.id}`}>View {artist.name}</Link>
           <br/>
           <a className='btn btn-danger' onClick={() => this.handleDelete(artist.id)}>delete {artist.name}</a>
+          <br/>
         </li>
       )  
     });
