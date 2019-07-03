@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-// delete implementing in index or show
+// delete implementing in index
 import Index from './components/Index';
 import Create from './components/Create';
 import Edit from './components/Edit';
