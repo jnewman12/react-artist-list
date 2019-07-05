@@ -16,7 +16,7 @@ export function getArtist(id) {
 
 // create
 export function createArtist(artist) {
-  fetch(`${URL}/artists`, {
+  return fetch(`${URL}/artists`, {
     method: 'POST',
     body: JSON.stringify({
       name: artist.name,
@@ -32,7 +32,7 @@ export function createArtist(artist) {
 
 // edit
 export function editArtist(artist) {
-  fetch(`${URL}/artists/${artist.id}`, {
+  return fetch(`${URL}/artists/${artist.id}`, {
     method: 'PUT',
     body: JSON.stringify({
       name: artist.name,
