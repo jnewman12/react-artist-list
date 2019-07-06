@@ -3,7 +3,7 @@ import { createArtist } from '../services/api';
 
 class Create extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       name: '',
       description: '',
@@ -12,65 +12,59 @@ class Create extends Component {
     }
   }
 
-  updateName = (e) => {
-    this.setState({name: e.target.value})
+  handleName = (e) => {
+    this.setState({ name: e.target.value })
   }
 
-  updateDescription = (e) => {
-    this.setState({description: e.target.value})
+  handleDescription = (e) => {
+    this.setState({ description: e.target.value })
   }
 
-  updateTopTrack = (e) => {
-    this.setState({topTrack: e.target.value})
+  handleTopTrack = (e) => {
+    this.setState({ topTrack: e.target.value })
   }
 
-  updateImageUrl = (e) => {
-    this.setState({imageUrl: e.target.value})
+  handleImageUrl = (e) => {
+    this.setState({ imageUrl: e.target.value })
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    var self = this;
-    fetch('https://shielded-fjord-54456.herokuapp.com/artists', {
-      method: 'POST',
-      body: JSON.stringify({
-        name: self.state.name,
-        description: self.state.description,
-        top_track: self.state.topTrack,
-        image_url: self.state.imageUrl
-      }),
-      headers: {
-        'content-type': 'application/json'
-      }
-    }).then(function(res) {
+    createArtist(this.state).then(function(artist) {
       window.location = '/';
     })
   }
 
   render() {
-    return (
+    return(
       <div>
+        <h1>Add Artist</h1>
+        <br/>
         <form onSubmit={this.handleSubmit}>
-          <label>Name of Artist</label><br/>
-          <input value={this.state.name} onChange={this.updateName} required={true} />
+          <label>Artist Name</label>
+          <br/>
+          <input onChange={this.handleName} value={this.state.name} required={true}/>
           <br/>
 
-          <label>Description of Artist</label><br/>
-          <input value={this.state.postLink} onChange={this.updateDescription} required={true} />
+          <label>Artist Description</label>
+          <br/>
+          <input onChange={this.handleDescription} value={this.state.description} required={true}/>
           <br/>
 
-          <label>Top Track</label><br/>
-          <input value={this.state.topTrack} onChange={this.updateTopTrack} required={true} />
+          <label>Artist Top Track</label>
+          <br/>
+          <input onChange={this.handleTopTrack} value={this.state.topTrack} required={true}/>
           <br/>
 
-          <label>Image URL</label><br/>
-          <input value={this.state.imageUrl} onChange={this.updateImageUrl} required={true} />
+          <label>Artist Image URL</label>
           <br/>
-
-          <input type="submit" value="Add artist"/>
+          <input onChange={this.handleImageUrl} value={this.state.imageUrl} required={true}/>
+          <br/>
+          <br/>
+          <input type='submit' value='Add Artist' className='btn btn-primary' />
         </form>
-      </div>
-    )  
+      </div>  
+    )
   }
 }
 
